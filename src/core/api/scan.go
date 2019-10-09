@@ -124,6 +124,11 @@ func (sa *ScanAPI) Report() {
 
 	vulItems := make(map[string]interface{}, len(reports))
 	for _, rp := range reports {
+		// Resolve the data only when it is ready.
+		if len(rp.Report) == 0 {
+			continue
+		}
+
 		vrp, err := report.ResolveData(rp.MimeType, []byte(rp.Report))
 		if err != nil {
 			sa.SendInternalServerError(errors.Wrap(err, "scan API: get report"))
