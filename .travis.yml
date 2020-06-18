@@ -2,7 +2,7 @@ sudo: true
 language: go
 go:
 - 1.12.12
-go_import_path: github.com/goharbor/harbor
+go_import_path: github.com/zhangdb-git/harbor
 services:
 - docker
 dist: trusty
@@ -40,7 +40,7 @@ env:
   - REDIS_HOST: localhost
   - REG_VERSION: v2.7.1
   - UI_BUILDER_VERSION: 1.6.0
-  - TOKEN_PRIVATE_KEY_PATH: "/home/travis/gopath/src/github.com/goharbor/harbor/tests/private_key.pem"
+  - TOKEN_PRIVATE_KEY_PATH: "/home/travis/gopath/src/github.com/zhangdb-git/harbor/tests/private_key.pem"
 addons: 
 apt:
   sources:
@@ -57,6 +57,7 @@ before_install:
 - sudo sed -i '$a DOCKER_OPTS=\"--insecure-registry '$IP':5000\"' /etc/default/docker
 - export IP=$IP
 - sudo service docker restart
+#- docker run --rm --privileged multiarch/qemu-user-static:register
 install:
 - if [ "$UTTEST" == true ]; then bash ./tests/travis/ut_install.sh ; fi
 - if [ "$APITEST_DB" == true ]; then bash ./tests/travis/api_common_install.sh $IP
@@ -69,3 +70,6 @@ script:
 - if [ "$APITEST_LDAP" == true ]; then bash ./tests/travis/api_run.sh LDAP $IP; fi
 - if [ "$OFFLINE" == true ]; then bash ./tests/travis/distro_installer.sh; fi
 - if [ "$UI_UT" == true ]; then bash ./tests/travis/ui_ut_run.sh ; fi
+
+arch:
+  - arm64
