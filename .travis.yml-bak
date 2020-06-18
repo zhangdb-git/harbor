@@ -56,13 +56,20 @@ before_install:
 - IP=`ip addr s eth0 |grep "inet "|awk '{print $2}' |awk -F "/" '{print $1}'`
 - sudo sed -i '$a DOCKER_OPTS=\"--insecure-registry '$IP':5000\"' /etc/default/docker
 - export IP=$IP
-#- sudo service docker restart
+- sudo service docker restart
 #- docker run --rm --privileged multiarch/qemu-user-static:register
 install:
-- sudo service docker restart
-
+- if [ "$UTTEST" == true ]; then bash ./tests/travis/ut_install.sh ; fi
+- if [ "$APITEST_DB" == true ]; then bash ./tests/travis/api_common_install.sh $IP
+  DB; fi
+- if [ "$APITEST_LDAP" == true ]; then bash ./tests/travis/api_common_install.sh $IP
+  LDAP; fi
 script:
-- make build
+- if [ "$UTTEST" == true ]; then bash ./tests/travis/ut_run.sh $IP; fi
+- if [ "$APITEST_DB" == true ]; then bash ./tests/travis/api_run.sh DB $IP; fi
+- if [ "$APITEST_LDAP" == true ]; then bash ./tests/travis/api_run.sh LDAP $IP; fi
+- if [ "$OFFLINE" == true ]; then bash ./tests/travis/distro_installer.sh; fi
+- if [ "$UI_UT" == true ]; then bash ./tests/travis/ui_ut_run.sh ; fi
 
 #arch:
 #  - arm64
