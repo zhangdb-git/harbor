@@ -71,5 +71,5 @@ script:
 - if [ "$OFFLINE" == true ]; then bash ./tests/travis/distro_installer.sh; fi
 - if [ "$UI_UT" == true ]; then bash ./tests/travis/ui_ut_run.sh ; fi
 
-arch:
-  - arm64
+#arch:
+#  - arm64
