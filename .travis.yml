@@ -6,24 +6,7 @@ go_import_path: github.com/zhangdb-git/harbor
 services:
 - docker
 dist: trusty
-matrix:
-  include:
-  - go: 1.12.12
-    env:
-    - UTTEST=true
-  - go: 1.12.12
-    env:
-    - APITEST_DB=true
-  - go: 1.12.12
-    env:
-    - APITEST_LDAP=true
-  - go: 1.12.12
-    env:
-    - OFFLINE=true
-  - language: node_js
-    node_js: 10.16.2
-    env:
-    - UI_UT=true
+
 env:
   global:
   - POSTGRESQL_HOST: localhost
