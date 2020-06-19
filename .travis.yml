@@ -42,8 +42,10 @@ script:
 #- docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
 - docker login -u zhangdber -p 123456aaa docker.io 
 #- docker push zhangdber/harbor-bin  
-- docker build -t zhangdber/harbor-portal-arm64:v1.10.2 -f make/photon/portal/Dockerfile make/photon/portal/
-- docker push zhangdber/harbor-portal-arm64:v1.10.2
+- docker build -t zhangdber/harbor-redis-arm64:v1.10.2 -f make/photon/redis/Dockerfile make/photon/redis/
+- docker push zhangdber/harbor-redis-arm64:v1.10.2
+- docker build -t zhangdber/harbor-db-arm64:v1.10.2 -f make/photon/db/Dockerfile make/photon/db/
+- docker push zhangdber/harbor-db-arm64:v1.10.2
 
 arch:
   - arm64
