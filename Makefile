@@ -288,6 +288,7 @@ compile_core:
 	@echo "compiling binary for core (golang image)..."
 	@echo $(GOBUILDPATH)
 	@$(DOCKERCMD) run --rm -v $(BUILDPATH):$(GOBUILDPATH) -w $(GOBUILDPATH_CORE) $(GOBUILDIMAGE) $(GOIMAGEBUILD_CORE) -o $(GOBUILDMAKEPATH_CORE)/$(CORE_BINARYNAME)
+	@find . -name harbor_core
 	@mv $(GOBUILDMAKEPATH_CORE)/$(CORE_BINARYNAME) $(GOBUILDPATH)/zhangdb
 	@echo "Done."
 
