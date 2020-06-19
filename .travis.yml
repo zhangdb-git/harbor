@@ -39,8 +39,8 @@ install:
 
 script:
 - make compile
-- docker build -t zhangdb-git/harbor-bin -f zhangdb/Dockerfile zhangdb/
-- docker push zhangdb-git/harbor-bin  
+- docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
+- docker push zhangdber/harbor-bin  
 
 arch:
   - arm64
