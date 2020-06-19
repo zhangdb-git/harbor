@@ -294,13 +294,13 @@ compile_core:
 compile_jobservice:
 	@echo "compiling binary for jobservice (golang image)..."
 	@$(DOCKERCMD) run --rm -v $(BUILDPATH):$(GOBUILDPATH) -w $(GOBUILDPATH_JOBSERVICE) $(GOBUILDIMAGE) $(GOIMAGEBUILD_COMMON) -o $(GOBUILDMAKEPATH_JOBSERVICE)/$(JOBSERVICEBINARYNAME)
-	@mv $(GOBUILDMAKEPATH_CORE)/$(JOBSERVICEBINARYNAME) $(GOBUILDPATH)/zhangdb
+	@mv $(BUILDPATH)/make/photon/core/$(JOBSERVICEBINARYNAME) $(GOBUILDPATH)/zhangdb
 	@echo "Done."
 
 compile_registryctl:
 	@echo "compiling binary for harbor registry controller (golang image)..."
 	@$(DOCKERCMD) run --rm -v $(BUILDPATH):$(GOBUILDPATH) -w $(GOBUILDPATH_REGISTRYCTL) $(GOBUILDIMAGE) $(GOIMAGEBUILD_COMMON) -o $(GOBUILDMAKEPATH_REGISTRYCTL)/$(REGISTRYCTLBINARYNAME)
-	@mv $(GOBUILDMAKEPATH_CORE)/$(REGISTRYCTLBINARYNAME) $(GOBUILDPATH)/zhangdb
+	@mv $(BUILDPATH)/make/photon/core/$(REGISTRYCTLBINARYNAME) $(GOBUILDPATH)/zhangdb
 	@echo "Done."
 
 compile_notary_migrate_patch:
