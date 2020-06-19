@@ -38,7 +38,7 @@ install:
 #- sudo service docker restart
 
 script:
-- make all
+- make compile
 
 arch:
   - arm64
