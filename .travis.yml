@@ -42,11 +42,11 @@ script:
 #- docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
 - docker login -u zhangdber -p 123456aaa docker.io 
 #- docker push zhangdber/harbor-bin  
-#- docker build -t zhangdber/harbor-trivy-arm64:v2.0.0 -f make/photon/trivy-adapter/Dockerfile make/photon/trivy-adapter/
+- docker build -t zhangdber/harbor-trivy-arm64:v2.0.0 -f make/photon/trivy-adapter/Dockerfile make/photon/trivy-adapter/
 #- docker push zhangdber/harbor-trivy-bin-arm64:v2.0.0
-#- docker push zhangdber/harbor-trivy-arm64:v2.0.0
-- cd make/photon/trivy-adapter/
-- ./builder-trivy.sh v0.6.0
+- docker push zhangdber/harbor-trivy-arm64:v2.0.0
+#- cd make/photon/trivy-adapter/
+#- ./builder-trivy.sh v0.6.0
 
 arch:
   - arm64

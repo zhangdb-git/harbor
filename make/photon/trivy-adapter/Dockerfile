@@ -1,4 +1,3 @@
-from zhangdber/harbor-trivy-bin:v2.0.0 as harbor-trivy-bin
 FROM photon:3.0
 
 RUN tdnf install -y sudo rpm >> /dev/null \
@@ -7,10 +6,10 @@ RUN tdnf install -y sudo rpm >> /dev/null \
     && useradd --no-log-init -m -r -g 10000 -u 10000 scanner
 
 
-COPY install_cert.sh /home/scanner
-COPY entrypoint.sh /home/scanner
-COPY --from=harbor-trivy-bin trivy /usr/local/bin/trivy
-COPY --from=harbor-trivy-bin /go/src/github.com/aquasecurity/harbor-scanner-trivy/scanner-trivy /home/scanner/bin/scanner-trivy
+COPY install_cert.sh /home/scanner/install_cert.sh
+COPY entrypoint.sh /home/scanner/entrypoint.sh
+COPY trivy /usr/local/bin/trivy
+COPY scanner-trivy /home/scanner/bin/scanner-trivy
 
 
 RUN chown -R scanner:scanner /etc/pki/tls/certs \
