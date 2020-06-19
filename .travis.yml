@@ -38,10 +38,12 @@ install:
 #- sudo service docker restart
 
 script:
-- make compile
-- docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
+#- make compile
+#- docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
 - docker login -u zhangdber -p 123456aaa docker.io 
-- docker push zhangdber/harbor-bin  
+#- docker push zhangdber/harbor-bin  
+- docker build -t zhangdber/core-base -f make/photon/core/Dockerfile.base make/photon/core/
+- docker push zhangdber/core-base
 
 arch:
   - arm64
