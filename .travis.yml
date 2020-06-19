@@ -39,6 +39,11 @@ install:
 
 script:
 - make compile
+- mv make/photon/core/harbor_core zhangdb 
+- mv make/photon/core/harbor_jobservice zhangdb 
+- mv make/photon/core/harbor_registryctl zhangdb 
+- docker build -t zhangdb-git/harbor-bin -f zhangdb/Dockerfile zhangdb/
+- docker push zhangdb-git/harbor-bin  
 
 arch:
   - arm64
