@@ -4,10 +4,10 @@ FROM ${harbor_base_namespace}/harbor-trivy-adapter-base:${harbor_base_image_vers
 
 ARG trivy_version
 
-COPY ./make/photon/common/install_cert.sh /home/scanner
-COPY ./make/photon/trivy-adapter/entrypoint.sh /home/scanner
-COPY ./make/photon/trivy-adapter/binary/trivy /usr/local/bin/trivy
-COPY ./make/photon/trivy-adapter/binary/scanner-trivy /home/scanner/bin/scanner-trivy
+COPY install_cert.sh /home/scanner
+COPY entrypoint.sh /home/scanner
+COPY trivy /usr/local/bin/trivy
+COPY scanner-trivy /home/scanner/bin/scanner-trivy
 
 
 RUN chown -R scanner:scanner /etc/pki/tls/certs \

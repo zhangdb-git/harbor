@@ -1,0 +1,51 @@
+sudo: true
+language: go
+go:
+- 1.13.8
+go_import_path: github.com/zhangdb-git/harbor
+services:
+- docker
+dist: trusty
+
+env:
+  global:
+  - POSTGRESQL_HOST: localhost
+  - POSTGRESQL_PORT: 5432
+  - POSTGRESQL_USR: postgres
+  - POSTGRESQL_PWD: root123
+  - POSTGRESQL_DATABASE: registry
+  - ADMINSERVER_URL: http://127.0.0.1:8888
+  - DOCKER_COMPOSE_VERSION: 1.23.0
+  - HARBOR_ADMIN: admin
+  - HARBOR_ADMIN_PASSWD: Harbor12345
+  - CORE_SECRET: tempString
+  - KEY_PATH: "/data/secret/keys/secretkey"
+  - REDIS_HOST: localhost
+  - REG_VERSION: v2.7.1
+  - UI_BUILDER_VERSION: 1.6.0
+  - TOKEN_PRIVATE_KEY_PATH: "/home/travis/gopath/src/github.com/zhangdb-git/harbor/tests/private_key.pem"
+addons: 
+apt:
+  sources:
+  - google-chrome
+  packages:
+  - google-chrome-stable
+  - google-chrome-beta
+before_install:
+#- sudo service docker restart
+#- docker run --rm --privileged multiarch/qemu-user-static:register
+install:
+#- sudo service docker restart
+
+script:
+#- make compile
+#- docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
+#- docker login -u zhangdber -p 123456aaa docker.io 
+#- docker push zhangdber/harbor-bin  
+#- docker build -t zhangdber/harbor-trivy-bin-arm64:v2.0.0 -f make/photon/trivy-adapter/Dockerfile make/photon/trivy-adapter/
+#- docker push zhangdber/harbor-trivy-bin-arm64:v2.0.0
+- cd make/photon/trivy-adapter/
+- ./build.sh
+
+arch:
+  - arm64
