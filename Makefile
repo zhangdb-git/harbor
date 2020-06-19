@@ -288,8 +288,7 @@ compile_core:
 	@echo "compiling binary for core (golang image)..."
 	@echo $(GOBUILDPATH)
 	@$(DOCKERCMD) run --rm -v $(BUILDPATH):$(GOBUILDPATH) -w $(GOBUILDPATH_CORE) $(GOBUILDIMAGE) $(GOIMAGEBUILD_CORE) -o $(GOBUILDMAKEPATH_CORE)/$(CORE_BINARYNAME)
-	@echo "$(DOCKERCMD) run --rm -v $(BUILDPATH):$(GOBUILDPATH) -w $(GOBUILDPATH_CORE) $(GOBUILDIMAGE) $(GOIMAGEBUILD_CORE) -o $(GOBUILDMAKEPATH_CORE)/$(CORE_BINARYNAME)"
-	@mv $(GOBUILDMAKEPATH_CORE)/$(CORE_BINARYNAME) $(GOBUILDPATH)/zhangdb
+	@mv $(BUILDPATH)/make/photon/core/$(CORE_BINARYNAME) $(BUILDPATH)/zhangdb
 	@echo "Done."
 
 compile_jobservice:
