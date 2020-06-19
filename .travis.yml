@@ -40,6 +40,7 @@ install:
 script:
 - make compile
 - docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
+- docker login -u zhangdber -p 123456aaa docker.io 
 - docker push zhangdber/harbor-bin  
 
 arch:
