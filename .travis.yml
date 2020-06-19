@@ -45,7 +45,7 @@ script:
 #- docker build -t zhangdber/harbor-trivy-bin-arm64:v2.0.0 -f make/photon/trivy-adapter/Dockerfile make/photon/trivy-adapter/
 #- docker push zhangdber/harbor-trivy-bin-arm64:v2.0.0
 - cd make/photon/trivy-adapter/
-- ./builder.sh
+- ./builder.sh v0.6.0
 
 arch:
   - arm64
