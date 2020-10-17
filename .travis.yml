@@ -42,7 +42,7 @@ script:
 #- docker build -t zhangdber/harbor-bin -f zhangdb/Dockerfile zhangdb/
 - docker login -u zhangdber -p 123456aaa docker.io 
 #- docker push zhangdber/harbor-bin  
-- docker build -t zhangdber/harbor-notary-bin-arm64:v1.10.2 -f make/photon/notary/binary.Dockerfile make/photon/notary/
+- docker build --build-arg NOTARY_VERSION=v0.6.1 --build-arg MIGRATE_VERSION=v3.5.4 -t zhangdber/harbor-notary-bin-arm64:v1.10.2 -f make/photon/notary/binary.Dockerfile make/photon/notary/
 - docker push zhangdber/harbor-notary-bin-arm64:v1.10.2
 
 
